@@ -30,14 +30,27 @@ class PanaderiaController:
                 print("\n--- NUEVO PEDIDO ---")
                 cedula = input("Ingrese la cédula del cliente: ")
                 
+                cliente_valido = self.service.repository.buscar_cliente_por_cedula(cedula)
+                if not cliente_valido:
+                    print("Error: El cliente no está registrado.")
+                    continue
+
                 items_a_comprar = []
                 while True:
                     id_prod = input("ID del producto (o 'f' para finalizar): ")
                     if id_prod.lower() == 'f':
                         break
                     try:
+                        id_int = int(id_prod)
                         cantidad = int(input("Cantidad: "))
-                        items_a_comprar.append({"id": int(id_prod), "amount": cantidad} if 'amount' in id_prod else {"id": int(id_prod), "cantidad": cantidad})
+                        
+                        validacion = self.service.validar_item_individual(id_int, cantidad)
+                        if "error" in validacion:
+                            print(f"¡Error! {validacion['error']}")
+                            continue
+                            
+                        items_a_comprar.append({"id": id_int, "cantidad": cantidad})
+                        print(f"{validacion['nombre']} añadido.")
                     except ValueError:
                         print("Entrada inválida.")
                         continue
@@ -46,12 +59,8 @@ class PanaderiaController:
                     print("Pedido cancelado.")
                     continue
 
-                resultado = self.service.procesar_pedido(cedula, [{"id": i["id"], "cantidad": i.get("cantidad", i.get("amount"))} for i in items_a_comprar])
+                resultado = self.service.procesar_pedido(cedula, items_a_comprar)
                 
-                if "error" in resultado:
-                    print(f"Error: {resultado['error']}")
-                    continue
-
                 print("\n========================================")
                 print("               FACTURA                 ")
                 print("========================================")
