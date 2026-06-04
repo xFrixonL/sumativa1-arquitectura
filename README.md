@@ -1,23 +1,31 @@
 # sumativa1-arquitectura
 
-Proyecto académico para la materia de Arquitectura de Software que evalúa la evolución de un Sistema de Pedidos para una Panadería.
+Proyecto académico para la materia de Arquitectura de Software. En esta rama (`feature/capas`) el Sistema de Pedidos para una Panadería ha evolucionado desde una versión de código espagueti hacia una Arquitectura Monolítica por Capas.
 
-## Descripción
+## Descripción de la rama
 
-Este repositorio presenta tres enfoques distintos para implementar el mismo dominio de negocio:
+Esta implementación organiza el proyecto en tres capas principales para mejorar la separación de responsabilidades y el orden del código.
 
-- `feature/codigo-espagueti`: una versión con anti-patrones y diseño poco modular.
-- `feature/monolitico-por-capas`: un enfoque monolítico organizado en capas.
-- `feature/ddd`: una implementación basada en Domain-Driven Design (DDD).
+- `controllers`: capa de presentación y consola. Maneja la interacción con el usuario, los menús y la lectura de entradas.
+- `services`: capa de lógica de negocio. Contiene las reglas de stock, validación de pedidos, cálculo de descuentos y procesamiento de la factura.
+- `repositories`: capa de persistencia en memoria. Gestiona el almacenamiento de productos, clientes y pedidos usando estructuras en memoria.
 
-Cada enfoque reside en su propia rama `feature/` y permite comparar cómo evoluciona la arquitectura desde una base informal hacia un diseño más limpio y mantenible.
+## Ventajas sobre el código espagueti
 
-## Propósito
+- Separación clara de conceptos entre interfaz, lógica y datos.
+- Código más ordenado y fácil de mantener.
+- Menor acoplamiento entre la presentación y las reglas de negocio.
+- Facilita la evolución hacia arquitecturas más limpias en el futuro.
 
-- Mostrar los riesgos del código espagueti.
-- Comparar con una arquitectura monolítica en capas.
-- Explorar los beneficios de DDD para un dominio de pedidos de panadería.
+## Ejecución
+
+1. Navega al directorio del proyecto.
+2. Ejecuta:
+
+```bash
+python main.py
+```
 
 ## Notas
 
-Este repositorio es principalmente de carácter educativo y se utiliza para analizar y comparar patrones arquitectónicos en un mismo proyecto.
+Esta rama es un paso intermedio entre la versión espagueti y la implementación basada en DDD, enfocada en un diseño monolítico más estructurado.
