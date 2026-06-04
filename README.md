@@ -6,8 +6,8 @@ Proyecto académico para la materia de Arquitectura de Software que evalúa la e
 
 Este repositorio presenta tres enfoques distintos para implementar el mismo dominio de negocio:
 
-- `feature/codigo-espagueti`: una versión con anti-patrones y diseño poco modular.
-- `feature/monolitico-por-capas`: un enfoque monolítico organizado en capas.
+- `feature/espagueti`: una versión con anti-patrones y diseño poco modular.
+- `feature/capas`: un enfoque monolítico organizado en capas.
 - `feature/ddd`: una implementación basada en Domain-Driven Design (DDD).
 
 Cada enfoque reside en su propia rama `feature/` y permite comparar cómo evoluciona la arquitectura desde una base informal hacia un diseño más limpio y mantenible.
